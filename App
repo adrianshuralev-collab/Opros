@@ -1,0 +1,30 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+# Словарь для хранения голосов в памяти
+stats = {"Вариант А": 0, "Вариант Б": 0}
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        # Получаем данные из нажатой кнопки
+        user_choice = request.form.get("vote")
+        
+        if user_choice in stats:
+            stats[user_choice] += 1
+            
+            # ВЫВОД В КОМАНДНУЮ СТРОКУ (ТЕРМИНАЛ)
+            print("\n" + "="*30)
+            print(f"НОВЫЙ ГОЛОС: {user_choice}")
+            print(f"ОБЩАЯ СТАТИСТИКА:")
+            print(f"А: {stats['Вариант А']} | Б: {stats['Вариант Б']}")
+            print(f"IP: {request.remote_addr}")
+            print("="*30 + "\n")
+
+    # Отображаем файл из папки templates
+    return render_template("index.html")
+
+if __name__ == "__main__":
+    # Запуск на порту 5000, доступно для всех в локальной сети
+    app.run(host="0.0.0.0", port=5000)
