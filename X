@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Опрос</title>
+</head>
+<body>
+    <h1>Простой опрос</h1>
+    
+    <form action="/" method="POST">
+        <p>Выбери один из вариантов:</p>
+        
+        <button type="submit" name="vote" value="Вариант А">Вариант А</button>
+        <button type="submit" name="vote" value="Вариант Б">Вариант Б</button>
+    </form>
+
+    <p>Результат появится в консоли сервера после нажатия.</p>
+</body>
+</html>
